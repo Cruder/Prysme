@@ -4,15 +4,14 @@
 #include <memory>
 #include <string>
 #include "pry_scanner.hpp"
-#include "pry_parser.tab.hh"
+#include "pry_parser.tab.hpp"
 
 namespace Pry {
     class Driver {
     public:
-        MC_Driver(const &std::string filename) = default;
+        Driver();
 
-        void parse();
-
+        void parse(const std::string& filename);
     private:
         std::unique_ptr<Pry::Parser> parser;
         std::unique_ptr<Pry::Scanner> scanner;

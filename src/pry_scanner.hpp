@@ -5,7 +5,7 @@
 #include <FlexLexer.h>
 #endif
 
-#include "pry_parser.tab.hh"
+#include "pry_parser.tab.hpp"
 #include "location.hh"
 
 namespace Pry {

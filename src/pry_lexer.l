@@ -1,3 +1,7 @@
+%option debug
+%option yyclass="Pry::Scanner"
+%option noyywrap
+%option c++
 %{
     #include <string>
     #include "pry_scanner.hpp"
@@ -9,12 +13,9 @@
     )
 
     using token = Pry::Parser::token;
-}
 
-%option debug
-%option yyclass="Pry::Scanner"
-%option noyywrap
-%option c++
+    yylval = lval;
+%}
 
 empty    [ \t]+
 num      [0-9]
@@ -23,11 +24,6 @@ real     {int}("."{int})?{exp}?
 variable [a-zA-Z](?:[a-zA-Z_0-9]+)?[\?!]?
 
 %%
-
-%{
-    yylval = lval;
-%}
-
 
 {empty} { /* NOTHING */}
 "\n"    { return(token::EOL); }
