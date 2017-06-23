@@ -2,7 +2,7 @@
 #define __PRY_SCANNER_HPP__
 
 #if !defined(yyFlexLexerOnce)
-#include <FlexLexer.h>
+    #include <FlexLexer.h>
 #endif
 
 #include "pry_parser.tab.hpp"
@@ -14,6 +14,7 @@ namespace Pry {
 
     public:
         Scanner(std::istream *in) : yyFlexLexer(in) {}
+        virtual ~Scanner() {};
 
         virtual int yylex(
             Pry::Parser::semantic_type * const lval,

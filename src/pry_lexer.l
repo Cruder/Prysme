@@ -4,17 +4,15 @@
 %option c++
 %{
     #include <string>
-    #include "pry_scanner.hpp"
+    #include "src/pry_scanner.hpp"
 
     #undef  YY_DECL
-    #define YY_DECL int Pry::Scanner::yylex(
-        const Pry::Parser::semantic_type* lval,
-        Pry::Parser::location_type *loc
-    )
+    #define YY_DECL int Pry::Scanner::yylex(const Pry::Parser::semantic_type* lval, Pry::Parser::location_type *loc)
 
     using token = Pry::Parser::token;
 
-    yylval = lval;
+    #define yyterminate() return(token::END)
+    #define YY_USER_ACTION loc->step(); loc->columns(yyleng);
 %}
 
 empty    [ \t]+
@@ -24,6 +22,9 @@ real     {int}("."{int})?{exp}?
 variable [a-zA-Z](?:[a-zA-Z_0-9]+)?[\?!]?
 
 %%
+%{
+    yylval = lval;
+%}
 
 {empty} { /* NOTHING */}
 "\n"    { return(token::EOL); }

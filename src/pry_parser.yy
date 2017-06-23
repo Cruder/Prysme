@@ -25,7 +25,7 @@
 
 %code{
     #include <iostream>
-    #include "prt_driver.hpp"
+    #include "pry_driver.hpp"
 
     #undef yylex
     #define yylex scanner.yylex
@@ -33,6 +33,8 @@
 
 %define api.value.type variant
 %define parse.assert
+
+%token EOL
 
 %locations
 
@@ -44,5 +46,5 @@ Language:
 	;
 
 Input:
-    {  }
+  EOL  { std::cout << "Hello"; }
   ;

@@ -13,8 +13,8 @@ namespace Pry {
 
         void parse(const std::string& filename);
     private:
-        std::unique_ptr<Pry::Parser> parser;
-        std::unique_ptr<Pry::Scanner> scanner;
+        Pry::Parser* parser = nullptr;
+        Pry::Scanner* scanner = nullptr;
     };
 }
 

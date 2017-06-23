@@ -9,8 +9,8 @@ void Pry::Driver::parse(const std::string& filename) {
 
     if(!in_file.good()) { exit(EXIT_FAILURE); }
 
-    scanner = std::make_unique<Pry::Scanner>(in_file);
-    parser = std::make_unique<Pry::Parser>(*this, parser.get());
+    scanner = new Pry::Scanner(&in_file);
+    parser = new Pry::Parser(*scanner, *this);
 
     if(parser->parse() != 0) {
         std::cerr << "Parse failed" << std::endl;

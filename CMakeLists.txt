@@ -9,11 +9,11 @@ find_package(FLEX REQUIRED)
 
 BISON_TARGET(parser
              src/pry_parser.yy
-             ${CMAKE_CURRENT_BINARY_DIR}/pry_parser.tab.cpp)
+           ${CMAKE_CURRENT_BINARY_DIR}/pry_parser.tab.cpp)
 
 FLEX_TARGET(scanner
             src/pry_lexer.l
-            ${CMAKE_CURRENT_BINARY_DIR}/pry_lexer.yy.cpp)
+          ${CMAKE_CURRENT_BINARY_DIR}/pry_lexer.yy.cpp)
 
 ADD_FLEX_BISON_DEPENDENCY(scanner parser)
 
