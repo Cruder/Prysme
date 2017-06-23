@@ -13,16 +13,18 @@ namespace Pry {
         using FlexLexer::yylex;
 
     public:
-        Scanner(std::istream *in) : yyFlexLexer(in) {}
-        virtual ~Scanner() {};
+        Scanner(std::istream *in, std::ostream* out = nullptr) : yyFlexLexer(in, out) {}
+//        virtual ~Scanner() {};
 
-        virtual int yylex(
-            Pry::Parser::semantic_type * const lval,
-            Pry::Parser::location_type *location
-        );
+//        virtual int yylex(
+//            Pry::Parser::semantic_type * const lval,
+//            Pry::Parser::location_type *location
+//        );
+
+        int yylex(const Parser::semantic_type* lval, Parser::location_type *loc);
     private:
         /* yyval ptr */
-        Pry::Parser::semantic_type *yylval = nullptr;
+        Parser::semantic_type *yylval = nullptr;
     };
 }
 

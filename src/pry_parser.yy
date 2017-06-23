@@ -25,7 +25,7 @@
 
 %code{
     #include <iostream>
-    #include "pry_driver.hpp"
+    #include "src/pry_driver.hpp"
 
     #undef yylex
     #define yylex scanner.yylex

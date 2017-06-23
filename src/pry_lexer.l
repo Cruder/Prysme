@@ -1,5 +1,6 @@
 %option debug
-%option yyclass="Pry::Scanner"
+%option yyclass="Scanner"
+%option prefix="Pry"
 %option noyywrap
 %option c++
 %{
@@ -11,7 +12,7 @@
 
     using token = Pry::Parser::token;
 
-    #define yyterminate() return(token::END)
+    #define yyterminate() return(token::EOL)
     #define YY_USER_ACTION loc->step(); loc->columns(yyleng);
 %}
 
@@ -23,7 +24,7 @@ variable [a-zA-Z](?:[a-zA-Z_0-9]+)?[\?!]?
 
 %%
 %{
-    yylval = lval;
+    yylval = (Parser::semantic_type *) lval;
 %}
 
 {empty} { /* NOTHING */}
