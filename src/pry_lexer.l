@@ -1,6 +1,5 @@
 %option debug
-%option yyclass="Scanner"
-%option prefix="Pry"
+%option yyclass="Pry::Scanner"
 %option noyywrap
 %option c++
 %{
