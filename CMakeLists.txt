@@ -20,7 +20,7 @@ ADD_FLEX_BISON_DEPENDENCY(scanner parser)
 add_executable(prysme
     src/main.cpp
     src/pry_driver
-    src/pry_scanner.hpp
+    src/pry_scanner
 
     ${FLEX_scanner_OUTPUTS}
     ${BISON_parser_OUTPUTS}

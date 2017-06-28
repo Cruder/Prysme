@@ -46,5 +46,11 @@ Language:
 	;
 
 Input:
-  EOL  { std::cout << "Hello"; }
+  EOL  { std::cout << "Hello" << std::endl; }
   ;
+
+%%
+
+void  Pry::Parser::error(Pry::location const &l, std::string const &err_message) {
+    std::cerr << "Error: " << err_message << " at " << l << "\n";
+}
