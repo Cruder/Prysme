@@ -14,7 +14,7 @@ namespace Pry {
 
     public:
         Scanner(std::istream *in, std::ostream* out = nullptr) : yyFlexLexer(in, out) {}
-//        virtual ~Scanner() {};
+        ~Scanner() {};
 
 //        virtual int yylex(
 //            Pry::Parser::semantic_type * const lval,
