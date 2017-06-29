@@ -10,8 +10,8 @@ namespace pry {
         public:
             Table();
 
-            void incrementDepth();
-            void decrementDepth();
+            void increment_depth();
+            void decrement_depth();
 
             Variable* find(std::string name);
             void      define(std::string name, std::unique_ptr<Variable> variable);
