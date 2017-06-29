@@ -4,15 +4,15 @@
 namespace pry {
     namespace variable {
         Table::Table() : variable_stack() {
-            incrementDepth();
+            increment_depth();
         }
 
-        void Table::incrementDepth() {
+        void Table::increment_depth() {
 
             variable_stack.push_back(std::make_unique<Row>());
         }
 
-        void Table::decrementDepth() {
+        void Table::decrement_depth() {
             if(variable_stack.size() == 1) { return; }
 
             variable_stack.pop_back();
