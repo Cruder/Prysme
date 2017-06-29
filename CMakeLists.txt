@@ -22,6 +22,12 @@ add_executable(prysme
     src/pry_driver
     src/pry_scanner
 
+    src/variable/row
+    src/variable/table
+    src/variable/variable
+    src/variable/already_defined_exception
+    src/variable/not_found_exception
+
     ${FLEX_scanner_OUTPUTS}
     ${BISON_parser_OUTPUTS}
 )
