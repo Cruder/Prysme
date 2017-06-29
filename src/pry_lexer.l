@@ -20,11 +20,13 @@ num      [0-9]
 int      {num}+
 real     {int}("."{int})?{exp}?
 variable [a-zA-Z](?:[a-zA-Z_0-9]+)?[\?!]?
+comment  [#].+
 
 %%
 %{
-    yylval = (Parser::semantic_type *) lval;
+    yylval = (Pry::Parser::semantic_type *) lval;
 %}
 
-{empty} { /* NOTHING */}
-"\n"    { return(token::EOL); }
+{empty}     { /* NOTHING */}
+{comment}   { return(token::COMMENT); }
+"\n"        { return(token::T_EOL); }

@@ -34,7 +34,7 @@
 %define api.value.type variant
 %define parse.assert
 
-%token EOL
+%token T_EOL COMMENT EOL
 
 %locations
 
@@ -42,9 +42,25 @@
 %%
 
 Language:
-	| Input {  }
+	  Input { return 0; }
 	;
 
 Input:
-  EOL  { std::cout << "Hello"; }
+                {}
+  |  Input Line {}
   ;
+
+Line:
+     T_EOL {}
+  |  Expr T_EOL {}
+  ;
+
+Expr:
+  |  COMMENT {}
+  ;
+%%
+
+void  Pry::Parser::error(Pry::location const &l, std::string const &err_message) {
+    std::cerr << std::endl;
+    std::cerr << "Error: " << err_message << " at " << l << std::endl;
+}
