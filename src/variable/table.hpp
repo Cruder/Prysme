@@ -4,7 +4,7 @@
 #include <vector>
 #include "row.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         class Table {
         public:

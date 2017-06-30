@@ -1,6 +1,6 @@
 #include "scope.hpp"
 
-namespace pry {
+namespace Pry {
     namespace tree {
         Scope::Scope(List* list) : links() {
             increment_depth(list);

@@ -1,6 +1,6 @@
 #include "variable.hpp"
 
-namespace pry {
+namespace Pry {
     namespace node {
         Variable::Variable(variable::Variable* v) :
             Node(),

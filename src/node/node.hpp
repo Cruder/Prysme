@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace pry {
+namespace Pry {
     namespace node {
         class Node {
         public:

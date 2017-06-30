@@ -1,6 +1,6 @@
 #include "list.hpp"
 
-namespace pry {
+namespace Pry {
     namespace tree {
         List::List() : nodes {} {
         }

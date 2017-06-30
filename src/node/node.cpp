@@ -1,6 +1,6 @@
 #include "node.hpp"
 
-namespace pry {
+namespace Pry {
     namespace node {
         Node::Node() : children() {
         }

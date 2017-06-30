@@ -6,7 +6,7 @@
 
 #include "list.hpp"
 
-namespace pry {
+namespace Pry {
     namespace tree {
         class Scope {
         public:

@@ -4,7 +4,7 @@
 #include "node.hpp"
 #include "../variable/variable.hpp"
 
-namespace pry {
+namespace Pry {
     namespace node {
         class Variable : public Node {
         public:

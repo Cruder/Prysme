@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace pry {
+namespace Pry {
     namespace variable {
         class NotFoundException : public std::runtime_error {
         public:

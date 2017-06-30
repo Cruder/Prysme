@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace pry {
+namespace Pry {
     namespace variable {
         class AlreadyDefinedException : public std::runtime_error {
         public:

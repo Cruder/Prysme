@@ -3,7 +3,7 @@
 
 #include "node.hpp"
 
-namespace pry {
+namespace Pry {
     namespace node {
         class Primitive : public Node {
         public:

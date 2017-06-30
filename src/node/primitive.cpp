@@ -1,6 +1,6 @@
 #include "primitive.hpp"
 
-namespace pry {
+namespace Pry {
     namespace node {
         Primitive::Primitive() :
             Node() {

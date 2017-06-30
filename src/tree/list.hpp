@@ -6,7 +6,7 @@
 
 #include "../node/node.hpp"
 
-namespace pry {
+namespace Pry {
     namespace tree {
         class List {
         public:
