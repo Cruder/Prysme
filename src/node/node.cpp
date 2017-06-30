@@ -5,13 +5,19 @@ namespace Pry {
         Node::Node() : children() {
         }
 
-        void Node::add_children(std::unique_ptr<Node> _children) {
-            children.push_back(std::move(_children));
+        Node::~Node() {
+            for(auto& c : children) {
+                delete c;
+            }
         }
 
-        void Node::add_children(std::vector<std::unique_ptr<Node>> _children) {
-            for(auto& c : _children) {
-                add_children(std::move(c));
+        void Node::add_children(Node* child) {
+            children.push_back(child);
+        }
+
+        void Node::add_children(std::vector<Node*> child) {
+            for(auto& c : child) {
+                add_children(c);
             }
         }
 

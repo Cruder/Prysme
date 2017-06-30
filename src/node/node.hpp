@@ -9,12 +9,13 @@ namespace Pry {
         class Node {
         public:
             Node();
+            ~Node();
 
-            void add_children(std::unique_ptr<Node> _children);
-            void add_children(std::vector<std::unique_ptr<Node>> _children);
+            void add_children(Node* child);
+            void add_children(std::vector<Node*> child);
             Node* exec();
         protected:
-            std::vector<std::unique_ptr<Node>> children;
+            std::vector<Node*> children;
         };
     }
 }

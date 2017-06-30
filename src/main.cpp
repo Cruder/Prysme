@@ -7,7 +7,12 @@ int main(int argc, char* argv[]) {
     }
 
     auto driver = Pry::Driver();
-    driver.parse(std::string(argv[1]));
+    try {
+        driver.parse(std::string(argv[1]));
+    } catch(const std::exception& ex) {
+        std::cerr << "An error has occured: (" << ex.what() << ")" << std::endl;
+        return -2;
+    }
 
     return 0;
 }

@@ -72,28 +72,28 @@ Line:
     ;
 
 Expr:
-        Assignment         { $$=$1; }
-    |   Primitive          { $$=$1; }
+        Assignment         { std::cout << "variable :)" << std::endl; $$=$1; }
+    |   Primitive          { std::cout << "primitive :)" << std::endl; $$=$1; }
     |   Math               { $$=$1; }
     |   LPAR_T Expr RPAR_T { $$=$2; }
-    |   Variable           { $$=$1; }
+    |   Variable           { std::cout << "variable :)" << std::endl; $$=$1; }
     ;
 
 Variable:
-      VAR { $$=nullptr; } // { $$=Pry::node::Variable(driver.variables->find($1)); }
+      VAR { $$=new Pry::node::Variable(driver.variables->find($1)); }
     ;
 
 Primitive:
-        INT    { $$=nullptr; } // { $$=Pry::node::Primitive(); }
-    |   DOUBLE { $$=nullptr; } // { $$=Pry::node::Primitive(); }
-    |   STRING { $$=nullptr; } // { $$=Pry::node::Primitive(); }
+        INT    { $$=new Pry::node::Primitive(); }
+    |   DOUBLE { $$=new Pry::node::Primitive(); }
+    |   STRING { $$=new Pry::node::Primitive(); }
     ;
 
 Math:
         Expr PLUS_T Expr     {}
-    |   Expr MINUS_T Expr      {}
-    |   Expr TIMES_T Expr     {}
-    |   Expr DIVIDE_T Expr      {}
+    |   Expr MINUS_T Expr    {}
+    |   Expr TIMES_T Expr    {}
+    |   Expr DIVIDE_T Expr   {}
     |   Expr POW_T Expr      {}
     ;
 
