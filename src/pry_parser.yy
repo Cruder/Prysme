@@ -1,6 +1,5 @@
 %skeleton "lalr1.cc"
 %require  "3.0"
-%debug
 %defines
 %define api.namespace {Pry}
 %define parser_class_name {Parser}
@@ -34,30 +33,65 @@
 %define api.value.type variant
 %define parse.assert
 
-%token T_EOL COMMENT EOL
+%token EOL_T EQ_T VAR_T VAL_T
+%token COMMENT EOL LPAR_T RPAR_T
+%token <std::string> VAR STRING
+%token <int>         INT
+%token <double>      DOUBLE
+%token PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 
 %locations
+
+%left PLUS_T MINUS_T
+%left TIMES_T DIVIDE_T
+%right POW_T
 
 %start Language
 %%
 
 Language:
-	  Input { return 0; }
-	;
+    Input { return 0; }
+    ;
 
 Input:
-                {}
-  |  Input Line {}
-  ;
+                    {}
+    |  Input Line   {}
+    |  Line         {}
+    ;
 
 Line:
-     T_EOL {}
-  |  Expr T_EOL {}
-  ;
+        EOL_T {}
+    |   Expr EOL_T {}
+    ;
 
 Expr:
-  |  COMMENT {}
-  ;
+        COMMENT            {}
+    |   Assignment         {}
+    |   Primitive          {}
+    |   Math               {}
+    |   LPAR_T Expr RPAR_T {}
+    |   VAR                {}
+    ;
+
+Primitive:
+        INT {}
+    |   DOUBLE {}
+    |   STRING {}
+    ;
+
+Math:
+        Expr PLUS_T Expr     {}
+    |   Expr MINUS_T Expr      {}
+    |   Expr TIMES_T Expr     {}
+    |   Expr DIVIDE_T Expr      {}
+    |   Expr POW_T Expr      {}
+    ;
+
+Assignment:
+        VAR_T VAR EQ_T Expr {}
+    |   VAL_T VAR EQ_T Expr {}
+    |   VAR EQ_T Expr       {}
+    ;
 %%
 
 void  Pry::Parser::error(Pry::location const &l, std::string const &err_message) {
