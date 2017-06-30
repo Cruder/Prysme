@@ -1,6 +1,8 @@
 #ifndef __PRY_SCANNER_HPP__
 #define __PRY_SCANNER_HPP__
 
+#include "node/_utility.hpp"
+
 #if !defined(yyFlexLexerOnce)
     #include <FlexLexer.h>
 #endif

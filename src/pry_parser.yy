@@ -5,6 +5,8 @@
 %define parser_class_name {Parser}
 
 %code requires{
+  #include "src/node/_utility.hpp"
+
    namespace Pry {
       class Driver;
       class Scanner;
@@ -40,6 +42,10 @@
 %token <double>      DOUBLE
 %token PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 
+%type <Pry::node::Node*> Expr Math Assignment
+%type <Pry::node::Variable*> Variable
+%type <Pry::node::Primitive*> Primitive
+
 %locations
 
 %left PLUS_T MINUS_T
@@ -60,23 +66,27 @@ Input:
     ;
 
 Line:
-        EOL_T {}
-    |   Expr EOL_T {}
+        EOL_T      {}
+    |   COMMENT    {}
+    |   Expr EOL_T {} // driver.scope->add_node(std::make_unique<Pry::node::Node>($1));
     ;
 
 Expr:
-        COMMENT            {}
-    |   Assignment         {}
-    |   Primitive          {}
-    |   Math               {}
-    |   LPAR_T Expr RPAR_T {}
-    |   VAR                {}
+        Assignment         { $$=$1; }
+    |   Primitive          { $$=$1; }
+    |   Math               { $$=$1; }
+    |   LPAR_T Expr RPAR_T { $$=$2; }
+    |   Variable           { $$=$1; }
+    ;
+
+Variable:
+      VAR { $$=nullptr; } // { $$=Pry::node::Variable(driver.variables->find($1)); }
     ;
 
 Primitive:
-        INT {}
-    |   DOUBLE {}
-    |   STRING {}
+        INT    { $$=nullptr; } // { $$=Pry::node::Primitive(); }
+    |   DOUBLE { $$=nullptr; } // { $$=Pry::node::Primitive(); }
+    |   STRING { $$=nullptr; } // { $$=Pry::node::Primitive(); }
     ;
 
 Math:

@@ -14,5 +14,9 @@ namespace Pry {
                 add_children(std::move(c));
             }
         }
+
+        Node* Node::exec() {
+            return nullptr;
+        }
     }
 }

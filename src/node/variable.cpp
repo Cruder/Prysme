@@ -2,13 +2,17 @@
 
 namespace Pry {
     namespace node {
+        Variable::Variable() :
+            Node() {
+        }
+
         Variable::Variable(variable::Variable* v) :
             Node(),
             variable(v) {
         }
 
         Node* Variable::exec() {
-            return dynamic_cast<Node*>(this);
+            return this;
         }
     }
 }

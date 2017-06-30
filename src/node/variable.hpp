@@ -8,6 +8,7 @@ namespace Pry {
     namespace node {
         class Variable : public Node {
         public:
+            Variable();
             Variable(variable::Variable* v);
             Node* exec();
         private:

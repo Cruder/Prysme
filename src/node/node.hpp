@@ -12,7 +12,7 @@ namespace Pry {
 
             void add_children(std::unique_ptr<Node> _children);
             void add_children(std::vector<std::unique_ptr<Node>> _children);
-            virtual Node* exec() = 0;
+            Node* exec();
         protected:
             std::vector<std::unique_ptr<Node>> children;
         };
