@@ -29,8 +29,11 @@ add_executable(prysme
     src/variable/not_found_exception
 
     src/tree/list
-    src/tree/node
     src/tree/scope
+
+    src/node/node
+    src/node/variable
+    src/node/primitive
 
     ${FLEX_scanner_OUTPUTS}
     ${BISON_parser_OUTPUTS}

@@ -1,5 +1,5 @@
-#ifndef __VARIABLE_HPP__
-#define __VARIABLE_HPP__
+#ifndef __VARIABLE_VARIABLE_HPP__
+#define __VARIABLE_VARIABLE_HPP__
 
 #include <string>
 
@@ -19,4 +19,4 @@ namespace pry {
     }
 }
 
-#endif /* end of include guard: __VARIABLE_HPP__ */
+#endif /* end of include guard: __VARIABLE_VARIABLE_HPP__ */

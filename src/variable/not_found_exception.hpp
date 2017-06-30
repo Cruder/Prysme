@@ -1,5 +1,5 @@
-#ifndef __NOT_FOUND_EXCEPTION_HPP__
-#define __NOT_FOUND_EXCEPTION_HPP__
+#ifndef __VARIABLE_NOT_FOUND_EXCEPTION_HPP__
+#define __VARIABLE_NOT_FOUND_EXCEPTION_HPP__
 
 #include <string>
 #include <stdexcept>
@@ -16,4 +16,4 @@ namespace pry {
     }
 }
 
-#endif /* end of include guard: __NOT_FOUND_EXCEPTION_HPP__ */
+#endif /* end of include guard: __VARIABLE_NOT_FOUND_EXCEPTION_HPP__ */
