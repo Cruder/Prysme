@@ -1,7 +1,7 @@
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated-register")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-register")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.2)
-
 project(Prysme)
 
 find_package(BISON REQUIRED)
@@ -46,6 +46,3 @@ target_include_directories(prysme
         src
         .
         ${CMAKE_CURRENT_BINARY_DIR})
-
-set_property(TARGET prysme
-             PROPERTY CXX_STANDARD 14)
