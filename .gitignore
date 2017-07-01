@@ -10,3 +10,5 @@ position.hh
 pry_parser.tab.cc
 pry_parser.tab.hh
 stack.hh
+test/
+
