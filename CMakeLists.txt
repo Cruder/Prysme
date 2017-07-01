@@ -46,3 +46,5 @@ target_include_directories(prysme
         src
         .
         ${CMAKE_CURRENT_BINARY_DIR})
+
+install (TARGETS prysme RUNTIME DESTINATION bin)
