@@ -1,10 +1,10 @@
-#ifndef __ALREADY_DEFINED_EXCEPTION_HPP__
-#define __ALREADY_DEFINED_EXCEPTION_HPP__
+#ifndef __VARIABLE_ALREADY_DEFINED_EXCEPTION_HPP__
+#define __VARIABLE_ALREADY_DEFINED_EXCEPTION_HPP__
 
 #include <string>
 #include <stdexcept>
 
-namespace pry {
+namespace Pry {
     namespace variable {
         class AlreadyDefinedException : public std::runtime_error {
         public:
@@ -16,4 +16,4 @@ namespace pry {
     }
 }
 
-#endif /* end of include guard: __ALREADY_DEFINED_EXCEPTION_HPP__ */
+#endif /* end of include guard: __VARIABLE_ALREADY_DEFINED_EXCEPTION_HPP__ */

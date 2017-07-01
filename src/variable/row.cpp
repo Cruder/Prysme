@@ -2,7 +2,7 @@
 #include "already_defined_exception.hpp"
 #include "row.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         Row::Row() : variables {} {
         }

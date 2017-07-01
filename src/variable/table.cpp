@@ -1,7 +1,7 @@
 #include "not_found_exception.hpp"
 #include "table.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         Table::Table() : variable_stack() {
             increment_depth();

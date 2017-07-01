@@ -1,6 +1,6 @@
 #include "variable.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         Variable::Variable(std::string value, std::string type, bool is_constant) :
             value { value },

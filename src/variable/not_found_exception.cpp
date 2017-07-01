@@ -1,6 +1,6 @@
 #include "not_found_exception.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         NotFoundException::NotFoundException(std::string name) :
             runtime_error("Variable not found"),

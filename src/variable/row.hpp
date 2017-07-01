@@ -5,7 +5,7 @@
 #include <memory>
 #include "variable.hpp"
 
-namespace pry {
+namespace Pry {
     namespace variable {
         class Row {
         public:
