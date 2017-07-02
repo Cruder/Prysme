@@ -11,6 +11,7 @@ namespace Pry {
         class List {
         public:
             List();
+            ~List();
 
             void add_node(node::Node* node);
 

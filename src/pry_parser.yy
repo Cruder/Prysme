@@ -30,6 +30,7 @@
     #undef yylex
     #define yylex scanner.yylex
     #define vtable driver.variables.get()
+    #define stable driver.scope.get()
 }
 
 %define api.value.type variant
@@ -41,12 +42,17 @@
 %token <int>         INT
 %token <double>      DOUBLE
 %token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
+%token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
+%token IF_T ELSE_T DO_T END_T
 
 %type <Pry::node::Node*> Expr Math
 %type <Pry::node::Assignment*> Assignment
 %type <Pry::node::Declarement*> Declarement
 %type <Pry::node::Variable*> Variable
 %type <Pry::node::Primitive*> Primitive
+%type <Pry::node::Condition*> Condition
+%type <Pry::node::BoolComparator*> BoolExpr
+%type <Pry::node::Scope*> Block
 
 %locations
 
@@ -81,6 +87,7 @@ Expr:
     |   LPAR_T Expr RPAR_T { $$=$2; }
     |   Declarement        { $$=$1; }
     |   Assignment         { $$=$1; }
+    |   Condition          { $$=$1; }
     ;
 
 Variable:
@@ -101,6 +108,16 @@ Math:
     |   Expr POW_T Expr      { $$=new Pry::node::Math($2, $1, $3); }
     ;
 
+BoolExpr:
+        Expr COND_EQ_T Expr    { $$=new Pry::node::BoolComparator($2, $1, $3); }
+    |   Expr COND_NEQ_T Expr   { $$=new Pry::node::BoolComparator($2, $1, $3); }
+    |   Expr COND_INF_T Expr   { $$=new Pry::node::BoolComparator($2, $1, $3); }
+    |   Expr COND_INFEQ_T Expr { $$=new Pry::node::BoolComparator($2, $1, $3); }
+    |   Expr COND_SUP_T Expr   { $$=new Pry::node::BoolComparator($2, $1, $3); }
+    |   Expr COND_SUPEQ_T Expr { $$=new Pry::node::BoolComparator($2, $1, $3); }
+  	;
+
+
 Declarement:
         VAR_T VAR EQ_T Expr {
           $$=new Pry::node::Declarement($2, vtable, false, $4);
@@ -112,6 +129,16 @@ Declarement:
 Assignment:
         VAR EQ_T Expr       { $$=new Pry::node::Assignment($1, vtable, $3); }
     ;
+
+Condition:
+        IF_T BoolExpr Block     {}
+    |   Expr IF_T BoolExpr      {}
+    ;
+
+Block:
+        DO_T Input END_T { $$=new Pry::node::Scope(stable, vtable); }
+    ;
+
 %%
 
 void  Pry::Parser::error(Pry::location const &l, std::string const &err_message) {

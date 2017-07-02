@@ -11,6 +11,7 @@
 
     using token = Pry::Parser::token;
     using MathOp = Pry::node::MathOp;
+    using BoolOp = Pry::node::BoolOp;
 
     #define yyterminate() return token::EOL
     #define YY_USER_ACTION loc->step(); loc->columns(yyleng);
@@ -36,6 +37,13 @@ comment  [#].+
 "\n"        { return token::EOL_T; }
 "var"       { return token::VAR_T; }
 "val"       { return token::VAL_T; }
+
+"=="        { yylval->build<BoolOp>(BoolOp::EQ);    return token::COND_EQ_T;    }
+"!="        { yylval->build<BoolOp>(BoolOp::NEQ);   return token::COND_NEQ_T;   }
+"<"         { yylval->build<BoolOp>(BoolOp::INF);   return token::COND_INF_T;   }
+"<="        { yylval->build<BoolOp>(BoolOp::INFEQ); return token::COND_INFEQ_T; }
+">"         { yylval->build<BoolOp>(BoolOp::SUP);   return token::COND_SUP_T;   }
+">="        { yylval->build<BoolOp>(BoolOp::SUPEQ); return token::COND_SUPEQ_T; }
 
 "+"         { yylval->build<MathOp>(MathOp::ADD); return token::PLUS_T;   }
 "-"         { yylval->build<MathOp>(MathOp::SUB); return token::MINUS_T;  }

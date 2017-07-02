@@ -1,0 +1,5 @@
+var foo = 51
+
+if foo > 51 do
+  foo = 10
+end
