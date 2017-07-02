@@ -1,7 +1,7 @@
 # Variable ae :)
-var ae = 5.1
-ae = 10.5
+var ae = 2
+ae = (ae + 10.5) * 2
 
 # Variable str
 var str = "foo"
-ae = str
+str = str + " bar"

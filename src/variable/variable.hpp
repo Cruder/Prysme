@@ -3,6 +3,7 @@
 
 #include <string>
 #include <variant>
+#include "primitive_type.hpp"
 
 namespace Pry {
     namespace variable {

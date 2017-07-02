@@ -40,7 +40,7 @@
 %token <std::string> VAR STRING
 %token <int>         INT
 %token <double>      DOUBLE
-%token PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
+%token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 
 %type <Pry::node::Node*> Expr Math
 %type <Pry::node::Assignment*> Assignment
@@ -94,11 +94,11 @@ Primitive:
     ;
 
 Math:
-        Expr PLUS_T Expr     {}
-    |   Expr MINUS_T Expr    {}
-    |   Expr TIMES_T Expr    {}
-    |   Expr DIVIDE_T Expr   {}
-    |   Expr POW_T Expr      {}
+        Expr PLUS_T Expr     { $$=new Pry::node::Math($2, $1, $3); }
+    |   Expr MINUS_T Expr    { $$=new Pry::node::Math($2, $1, $3); }
+    |   Expr TIMES_T Expr    { $$=new Pry::node::Math($2, $1, $3); }
+    |   Expr DIVIDE_T Expr   { $$=new Pry::node::Math($2, $1, $3); }
+    |   Expr POW_T Expr      { $$=new Pry::node::Math($2, $1, $3); }
     ;
 
 Declarement:

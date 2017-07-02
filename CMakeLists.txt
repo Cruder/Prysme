@@ -27,13 +27,16 @@ add_executable(prysme
     src/variable/variable
     src/variable/already_defined_exception
     src/variable/not_found_exception
+    src/variable/primitive_type
 
     src/tree/list
     src/tree/scope
 
+    src/node/algebra_exception
     src/node/node
     src/node/assignment
     src/node/declarement
+    src/node/math
     src/node/variable
     src/node/primitive
 
