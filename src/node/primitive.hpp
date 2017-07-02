@@ -8,7 +8,8 @@ namespace Pry {
         class Primitive : public Node {
         public:
             Primitive();
-            Node* exec();
+            Primitive(const Pry::variable::PrimitiveType& type);
+            virtual Node* exec();
         };
     }
 }

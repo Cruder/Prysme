@@ -19,5 +19,7 @@ namespace Pry {
         if(parser->parse() != 0) {
             std::cerr << "Parse failed" << std::endl;
         }
+
+        node_list.exec();
     }
 }

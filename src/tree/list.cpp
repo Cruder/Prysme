@@ -5,8 +5,8 @@ namespace Pry {
         List::List() : nodes {} {
         }
 
-        void List::add_node(std::unique_ptr<node::Node> node) {
-            nodes.push_back(std::move(node));
+        void List::add_node(node::Node* node) {
+            nodes.push_back(node);
         }
 
         void List::exec() {

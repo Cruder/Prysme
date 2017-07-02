@@ -3,17 +3,21 @@
 
 #include <vector>
 #include <memory>
+#include "../variable/variable.hpp"
 
 namespace Pry {
     namespace node {
         class Node {
         public:
+            Pry::variable::PrimitiveType value;
+        public:
             Node();
+            Node(const Pry::variable::PrimitiveType& value);
             ~Node();
 
             void add_children(Node* child);
             void add_children(std::vector<Node*> child);
-            Node* exec();
+            virtual Node* exec();
         protected:
             std::vector<Node*> children;
         };

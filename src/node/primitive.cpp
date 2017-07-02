@@ -6,8 +6,12 @@ namespace Pry {
             Node() {
         }
 
+        Primitive::Primitive(const Pry::variable::PrimitiveType& type) :
+            Node(type) {
+        }
+
         Node* Primitive::exec() {
-            return nullptr;
+            return this;
         }
     }
 }

@@ -1,4 +1,5 @@
 #include "variable.hpp"
+#include "primitive.hpp"
 
 namespace Pry {
     namespace node {
@@ -6,13 +7,16 @@ namespace Pry {
             Node() {
         }
 
-        Variable::Variable(variable::Variable* v) :
+        Variable::Variable(std::string name, variable::Table* t) :
             Node(),
-            variable(v) {
+            name { name },
+            table(t) {
         }
 
         Node* Variable::exec() {
-            return this;
+            auto node = new Primitive(table->find(name)->value);
+            node->add_children(this);
+            return node;
         }
     }
 }
