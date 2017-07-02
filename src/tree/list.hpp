@@ -12,11 +12,11 @@ namespace Pry {
         public:
             List();
 
-            void add_node(std::unique_ptr<node::Node> node);
+            void add_node(node::Node* node);
 
             void exec();
         private:
-            std::vector<std::unique_ptr<node::Node>> nodes;
+            std::vector<node::Node*> nodes;
         };
     }
 }

@@ -1,3 +1,7 @@
-# Variable a :)
-var a = 5.1
-a = a + 10.5
+# Variable ae :)
+var ae = 5.1
+ae = 10.5
+
+# Variable str
+var str = "foo"
+ae = str

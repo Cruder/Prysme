@@ -6,8 +6,8 @@ namespace Pry {
             increment_depth(list);
         }
 
-        void Scope::add_node(std::unique_ptr<node::Node> node) {
-            links.top()->add_node(std::move(node));
+        void Scope::add_node(node::Node* node) {
+            links.top()->add_node(node);
         }
 
         void Scope::increment_depth(List* list) {

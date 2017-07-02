@@ -2,17 +2,18 @@
 #define __NODE_VARIABLE_HPP__
 
 #include "node.hpp"
-#include "../variable/variable.hpp"
+#include "../variable/table.hpp"
 
 namespace Pry {
     namespace node {
         class Variable : public Node {
         public:
             Variable();
-            Variable(variable::Variable* v);
-            Node* exec();
+            Variable(std::string name, Pry::variable::Table* t);
+            virtual Node* exec();
         private:
-            variable::Variable* variable;
+            std::string name;
+            variable::Table* table;
         };
     }
 }

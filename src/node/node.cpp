@@ -2,7 +2,11 @@
 
 namespace Pry {
     namespace node {
-        Node::Node() : children() {
+        Node::Node() : value(), children() {
+        }
+
+        Node::Node(const Pry::variable::PrimitiveType& value) :
+            value(value), children() {
         }
 
         Node::~Node() {

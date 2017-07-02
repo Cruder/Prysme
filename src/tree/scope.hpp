@@ -12,7 +12,7 @@ namespace Pry {
         public:
             Scope(List* list);
 
-            void add_node(std::unique_ptr<node::Node> node);
+            void add_node(node::Node* node);
 
             void increment_depth(List* list);
             void decrement_depth();

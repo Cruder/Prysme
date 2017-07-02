@@ -25,11 +25,11 @@
 %parse-param { Driver  &driver  }
 
 %code{
-    #include <iostream>
     #include "src/pry_driver.hpp"
 
     #undef yylex
     #define yylex scanner.yylex
+    #define vtable driver.variables.get()
 }
 
 %define api.value.type variant
@@ -42,7 +42,9 @@
 %token <double>      DOUBLE
 %token PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 
-%type <Pry::node::Node*> Expr Math Assignment
+%type <Pry::node::Node*> Expr Math
+%type <Pry::node::Assignment*> Assignment
+%type <Pry::node::Declarement*> Declarement
 %type <Pry::node::Variable*> Variable
 %type <Pry::node::Primitive*> Primitive
 
@@ -51,6 +53,7 @@
 %left PLUS_T MINUS_T
 %left TIMES_T DIVIDE_T
 %right POW_T
+%right VAR
 
 %start Language
 %%
@@ -68,25 +71,26 @@ Input:
 Line:
         EOL_T      {}
     |   COMMENT    {}
-    |   Expr EOL_T {} // driver.scope->add_node(std::make_unique<Pry::node::Node>($1));
+    |   Expr EOL_T { driver.scope->add_node(std::move($1)); }
     ;
 
 Expr:
-        Assignment         { std::cout << "variable :)" << std::endl; $$=$1; }
-    |   Primitive          { std::cout << "primitive :)" << std::endl; $$=$1; }
+        Variable           { $$=$1; }
+    |   Primitive          { $$=$1; }
     |   Math               { $$=$1; }
     |   LPAR_T Expr RPAR_T { $$=$2; }
-    |   Variable           { std::cout << "variable :)" << std::endl; $$=$1; }
+    |   Declarement        { $$=$1; }
+    |   Assignment         { $$=$1; }
     ;
 
 Variable:
-      VAR { $$=new Pry::node::Variable(driver.variables->find($1)); }
+      VAR { $$=new Pry::node::Variable($1, vtable); }
     ;
 
 Primitive:
-        INT    { $$=new Pry::node::Primitive(); }
-    |   DOUBLE { $$=new Pry::node::Primitive(); }
-    |   STRING { $$=new Pry::node::Primitive(); }
+        INT    { $$=new Pry::node::Primitive($1); }
+    |   DOUBLE { $$=new Pry::node::Primitive($1); }
+    |   STRING { $$=new Pry::node::Primitive($1); }
     ;
 
 Math:
@@ -97,10 +101,16 @@ Math:
     |   Expr POW_T Expr      {}
     ;
 
+Declarement:
+        VAR_T VAR EQ_T Expr {
+          $$=new Pry::node::Declarement($2, vtable, false, $4);
+    }
+    |   VAL_T VAR EQ_T Expr {
+          $$=new Pry::node::Declarement($2, vtable, true, $4);
+    }
+
 Assignment:
-        VAR_T VAR EQ_T Expr {}
-    |   VAL_T VAR EQ_T Expr {}
-    |   VAR EQ_T Expr       {}
+        VAR EQ_T Expr       { $$=new Pry::node::Assignment($1, vtable, $3); }
     ;
 %%
 

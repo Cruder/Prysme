@@ -32,6 +32,8 @@ add_executable(prysme
     src/tree/scope
 
     src/node/node
+    src/node/assignment
+    src/node/declarement
     src/node/variable
     src/node/primitive
 
