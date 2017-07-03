@@ -37,6 +37,8 @@ add_executable(prysme
     src/node/bool_comparator
     src/node/condition
     src/node/declarement
+    src/node/display_variable_table
+    src/node/display_variable
     src/node/math
     src/node/node
     src/node/primitive
