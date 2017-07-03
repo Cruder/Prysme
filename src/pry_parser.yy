@@ -43,7 +43,8 @@
 %token <double>      DOUBLE
 %token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 %token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
-%token IF_T ELSE_T DO_T END_T
+%token <Pry::tree::List*> DO_T
+%token IF_T ELSE_T END_T
 
 %type <Pry::node::Node*> Expr Math
 %type <Pry::node::Assignment*> Assignment
@@ -53,6 +54,8 @@
 %type <Pry::node::Condition*> Condition
 %type <Pry::node::BoolComparator*> BoolExpr
 %type <Pry::node::Scope*> Block
+
+%type <Pry::tree::List*> BlockBegin
 
 %locations
 
@@ -131,12 +134,20 @@ Assignment:
     ;
 
 Condition:
-        IF_T BoolExpr Block     {}
-    |   Expr IF_T BoolExpr      {}
+        IF_T BoolExpr Block     { $$=new Pry::node::Condition($2, $3); }
+    |   Expr IF_T BoolExpr      { $$=new Pry::node::Condition($3, $1); }
     ;
 
 Block:
-        DO_T Input END_T { $$=new Pry::node::Scope(stable, vtable); }
+        BlockBegin Input BlockEnd { $$=new Pry::node::Scope($1, vtable); }
+    ;
+
+BlockBegin:
+        DO_T { std::cout << "begin" << std::endl; stable->increment_depth($1); $$=$1; }
+    ;
+
+BlockEnd:
+        END_T { std::cout << "end" << std::endl; stable->decrement_depth(); }
     ;
 
 %%

@@ -53,6 +53,11 @@ comment  [#].+
 "("         { return token::LPAR_T;   }
 ")"         { return token::RPAR_T;   }
 
+"if"        { return token::IF_T; }
+"else"      { return token::ELSE_T; }
+"do"        { yylval->build<Pry::tree::List*>(new Pry::tree::List()); return token::DO_T; }
+"end"       { return token::END_T; }
+
 {num} {
     yylval->build<int>(atoi(yytext));
     return token::INT;

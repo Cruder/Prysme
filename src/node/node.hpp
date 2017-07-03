@@ -13,7 +13,7 @@ namespace Pry {
         public:
             Node();
             Node(const Pry::variable::PrimitiveType& value);
-            ~Node();
+            virtual ~Node();
 
             void add_children(Node* child);
             void add_children(std::vector<Node*> child);

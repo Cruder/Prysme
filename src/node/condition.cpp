@@ -1,4 +1,5 @@
 #include "condition.hpp"
+#include <iostream>
 
 namespace Pry {
     namespace node {
@@ -14,7 +15,9 @@ namespace Pry {
         }
 
         Node* Condition::exec() {
-            if(std::get<int>(children[0]->value)) {
+            children[0]->exec();
+            std::cout << "cond -> " << std::get<int>(children[0]->value) << std::endl;
+            if(std::get<int>(children[0]->value) == 0) {
                 if(children.size() > 1) { value = children[1]->exec()->value; }
             } else {
                 if(children.size() > 2) { value = children[2]->exec()->value; }

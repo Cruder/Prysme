@@ -10,10 +10,11 @@ namespace Pry {
         class Scope : public Node {
         public:
             Scope();
-            Scope(tree::Scope* scope, variable::Table* table, Node* node);
+            Scope(tree::List* list, variable::Table* table);
+            virtual ~Scope();
             virtual Node* exec();
         private:
-            tree::Scope* scope;
+            tree::List* list;
             variable::Table* table;
         };
     }

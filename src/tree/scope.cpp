@@ -1,5 +1,5 @@
 #include "scope.hpp"
-
+#include <iostream>
 namespace Pry {
     namespace tree {
         Scope::Scope(List* list) : links() {
@@ -7,6 +7,7 @@ namespace Pry {
         }
 
         void Scope::add_node(node::Node* node) {
+            std::cout << "links size " << links.size() << std::endl;
             links.top()->add_node(node);
         }
 

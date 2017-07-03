@@ -77,6 +77,10 @@ namespace Pry {
             auto val1 = children[0]->exec()->value;
             auto val2 = children[1]->exec()->value;
 
+            std::cout << "Comparator" << std::endl;
+            std::cout << "1. " << variable::primitive_type::as_string(val1) << variable::primitive_type::class_string(val1) << std::endl;
+            std::cout << "2. " << variable::primitive_type::as_string(val2) << variable::primitive_type::class_string(val2) << std::endl;
+
             value = std::visit(bool_visitor2{}, val1, val2);
 
             return this;

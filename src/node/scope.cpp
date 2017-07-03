@@ -6,16 +6,20 @@ namespace Pry {
             Node() {
         }
 
-        Scope::Scope(tree::Scope* scope, variable::Table* table, Node* node) :
-            Node() {
-
+        Scope::Scope(tree::List* list, variable::Table* table) :
+            Node(),
+            list(list),
+            table(table) {
         }
 
+        Scope::~Scope() {
+            delete list;
+        }
 
         Node* Scope::exec() {
-            auto list = new List();
             table->increment_depth();
-            scope->increment_depth(list);
+            list->exec();
+            table->decrement_depth();
             return this;
         }
     }

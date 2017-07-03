@@ -21,5 +21,7 @@ namespace Pry {
         }
 
         node_list.exec();
+
+        std::cout << *variables->find("foo") << std::endl;
     }
 }
