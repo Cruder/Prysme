@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <memory>
-#include "../variable/variable.hpp"
+#include "../variable/primitive_type.hpp"
 
 namespace Pry {
     namespace node {

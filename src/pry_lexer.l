@@ -10,6 +10,7 @@
     #define YY_DECL int Pry::Scanner::yylex(const Pry::Parser::semantic_type* lval, Pry::Parser::location_type *loc)
 
     using token = Pry::Parser::token;
+    using MathOp = Pry::node::MathOp;
 
     #define yyterminate() return token::EOL
     #define YY_USER_ACTION loc->step(); loc->columns(yyleng);
@@ -36,11 +37,11 @@ comment  [#].+
 "var"       { return token::VAR_T; }
 "val"       { return token::VAL_T; }
 
-"+"         { return token::PLUS_T;   }
-"-"         { return token::MINUS_T;  }
-"*"         { return token::TIMES_T;  }
-"/"         { return token::DIVIDE_T; }
-"**"        { return token::POW_T;    }
+"+"         { yylval->build<MathOp>(MathOp::ADD); return token::PLUS_T;   }
+"-"         { yylval->build<MathOp>(MathOp::SUB); return token::MINUS_T;  }
+"*"         { yylval->build<MathOp>(MathOp::MUL); return token::TIMES_T;  }
+"/"         { yylval->build<MathOp>(MathOp::DIV); return token::DIVIDE_T; }
+"**"        { yylval->build<MathOp>(MathOp::POW); return token::POW_T;    }
 "("         { return token::LPAR_T;   }
 ")"         { return token::RPAR_T;   }
 
@@ -60,6 +61,9 @@ comment  [#].+
 }
 
 {string} {
-    yylval->build<std::string>(yytext);
+    std::string txt(yytext);
+
+    yylval->build<std::string>(txt.substr(1, txt.size() - 2));
+
     return token::STRING;
 }
