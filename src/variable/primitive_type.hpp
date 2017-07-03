@@ -5,7 +5,7 @@
 
 namespace Pry {
     namespace variable {
-        using PrimitiveType = std::variant<int, double, std::string, char>;
+        using PrimitiveType = std::variant<int, bool, double, std::string, char>;
         namespace primitive_type {
             std::string as_string(const PrimitiveType& type);
             std::string class_string(const PrimitiveType& type);

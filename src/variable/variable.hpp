@@ -7,8 +7,6 @@
 
 namespace Pry {
     namespace variable {
-        using PrimitiveType = std::variant<int, double, std::string, char>;
-
         class Variable {
         public:
             PrimitiveType value;

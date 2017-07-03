@@ -1,0 +1,12 @@
+var foo = 51.1
+var bag = 10
+if foo == 51.1 do
+  # important if
+  foo = 10
+  var bar = 5.1
+  var miam = "foo"
+  foo = if bar == 5.1 do
+    bag = miam + " miam"
+    21
+  end
+end

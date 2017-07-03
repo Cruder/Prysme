@@ -11,6 +11,7 @@
 
     using token = Pry::Parser::token;
     using MathOp = Pry::node::MathOp;
+    using BoolOp = Pry::node::BoolOp;
 
     #define yyterminate() return token::EOL
     #define YY_USER_ACTION loc->step(); loc->columns(yyleng);
@@ -37,6 +38,13 @@ comment  [#].+
 "var"       { return token::VAR_T; }
 "val"       { return token::VAL_T; }
 
+"=="        { yylval->build<BoolOp>(BoolOp::EQ);    return token::COND_EQ_T;    }
+"!="        { yylval->build<BoolOp>(BoolOp::NEQ);   return token::COND_NEQ_T;   }
+"<"         { yylval->build<BoolOp>(BoolOp::INF);   return token::COND_INF_T;   }
+"<="        { yylval->build<BoolOp>(BoolOp::INFEQ); return token::COND_INFEQ_T; }
+">"         { yylval->build<BoolOp>(BoolOp::SUP);   return token::COND_SUP_T;   }
+">="        { yylval->build<BoolOp>(BoolOp::SUPEQ); return token::COND_SUPEQ_T; }
+
 "+"         { yylval->build<MathOp>(MathOp::ADD); return token::PLUS_T;   }
 "-"         { yylval->build<MathOp>(MathOp::SUB); return token::MINUS_T;  }
 "*"         { yylval->build<MathOp>(MathOp::MUL); return token::TIMES_T;  }
@@ -44,6 +52,11 @@ comment  [#].+
 "**"        { yylval->build<MathOp>(MathOp::POW); return token::POW_T;    }
 "("         { return token::LPAR_T;   }
 ")"         { return token::RPAR_T;   }
+
+"if"        { return token::IF_T; }
+"else"      { return token::ELSE_T; }
+"do"        { yylval->build<Pry::tree::List*>(new Pry::tree::List()); return token::DO_T; }
+"end"       { return token::END_T; }
 
 {num} {
     yylval->build<int>(atoi(yytext));

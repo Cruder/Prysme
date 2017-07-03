@@ -6,6 +6,7 @@ struct primitive_type_value_to_string {
     inline std::string operator()(char arg) { return std::to_string(arg); }
     inline std::string operator()(double arg) { return std::to_string(arg); }
     inline std::string operator()(std::string arg) { return arg; }
+    inline std::string operator()(bool arg) { return arg ? "true" : "false"; }
 };
 
 struct primitive_type_type_to_string {
@@ -13,6 +14,7 @@ struct primitive_type_type_to_string {
     inline std::string operator()(char arg) { return "Character"; }
     inline std::string operator()(double arg) { return "Decimal"; }
     inline std::string operator()(std::string arg) { return "String"; }
+    inline std::string operator()(bool arg) { return "Boolean"; }
 };
 
 namespace Pry {

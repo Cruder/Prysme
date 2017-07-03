@@ -33,12 +33,15 @@ add_executable(prysme
     src/tree/scope
 
     src/node/algebra_exception
-    src/node/node
     src/node/assignment
+    src/node/bool_comparator
+    src/node/condition
     src/node/declarement
     src/node/math
-    src/node/variable
+    src/node/node
     src/node/primitive
+    src/node/scope
+    src/node/variable
 
     ${FLEX_scanner_OUTPUTS}
     ${BISON_parser_OUTPUTS}

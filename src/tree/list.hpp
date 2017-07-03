@@ -5,16 +5,18 @@
 #include <memory>
 
 #include "../node/node.hpp"
+#include "../variable/primitive_type.hpp"
 
 namespace Pry {
     namespace tree {
         class List {
         public:
             List();
+            ~List();
 
             void add_node(node::Node* node);
 
-            void exec();
+            variable::PrimitiveType exec();
         private:
             std::vector<node::Node*> nodes;
         };
