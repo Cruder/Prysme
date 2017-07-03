@@ -18,7 +18,7 @@ namespace Pry {
 
         Node* Scope::exec() {
             table->increment_depth();
-            list->exec();
+            value = list->exec();
             table->decrement_depth();
             return this;
         }

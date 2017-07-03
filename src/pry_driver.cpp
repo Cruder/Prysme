@@ -23,5 +23,6 @@ namespace Pry {
         node_list.exec();
 
         std::cout << *variables->find("foo") << std::endl;
+        std::cout << *variables->find("bag") << std::endl;
     }
 }

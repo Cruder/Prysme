@@ -7,7 +7,6 @@ namespace Pry {
         }
 
         List::~List() {
-            std::cout << "should be at the end " << std::endl;
             for(auto& node : nodes) {
                 delete node;
             }
@@ -17,10 +16,12 @@ namespace Pry {
             nodes.push_back(node);
         }
 
-        void List::exec() {
+        variable::PrimitiveType List::exec() {
+            node::Node* ret;
             for(auto& node : nodes) {
-                node->exec();
+                ret = node->exec();
             }
+            return ret->value;
         }
     }
 }

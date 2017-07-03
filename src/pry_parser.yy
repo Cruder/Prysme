@@ -143,11 +143,11 @@ Block:
     ;
 
 BlockBegin:
-        DO_T { std::cout << "begin" << std::endl; stable->increment_depth($1); $$=$1; }
+        DO_T { stable->increment_depth($1); $$=$1; }
     ;
 
 BlockEnd:
-        END_T { std::cout << "end" << std::endl; stable->decrement_depth(); }
+        END_T { stable->decrement_depth(); }
     ;
 
 %%
