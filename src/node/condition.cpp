@@ -23,5 +23,7 @@ namespace Pry {
 
             return this;
         }
+
+        std::string Condition::type_string() const { return "Condition"; }
     }
 }

@@ -17,11 +17,13 @@ namespace Pry {
         Driver();
 
         void parse(const std::string& filename);
+        void enable_tree_view() { tree_view = true; }
     private:
         Parser* parser = nullptr;
         Scanner* scanner = nullptr;
 
         tree::List node_list {};
+        bool tree_view = false;
     };
 }
 

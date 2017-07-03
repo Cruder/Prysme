@@ -10,6 +10,8 @@ namespace Pry {
             Condition();
             Condition(Node* cond, Node* child1 = nullptr, Node* child2 = nullptr);
             virtual Node* exec();
+        protected:
+            virtual std::string type_string() const;
         };
     }
 }

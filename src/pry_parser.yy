@@ -44,10 +44,12 @@
 %token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 %token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
 %token <Pry::tree::List*> DO_T
-%token IF_T ELSE_T END_T
+%token IF_T ELSE_T END_T DSP_VT DSP_V
+%token OPT_TREE_VIEW
 
-%type <Pry::node::Node*> Expr Math
+%type <Pry::node::Node*> Expr Display
 %type <Pry::node::Assignment*> Assignment
+%type <Pry::node::Math*> Math
 %type <Pry::node::Declarement*> Declarement
 %type <Pry::node::Variable*> Variable
 %type <Pry::node::Primitive*> Primitive
@@ -81,6 +83,11 @@ Line:
         EOL_T      {}
     |   COMMENT    {}
     |   Expr EOL_T { driver.scope->add_node(std::move($1)); }
+    |   Option EOL_T {}
+    ;
+
+Option:
+        OPT_TREE_VIEW { driver.enable_tree_view(); }
     ;
 
 Expr:
@@ -91,6 +98,7 @@ Expr:
     |   Declarement        { $$=$1; }
     |   Assignment         { $$=$1; }
     |   Condition          { $$=$1; }
+    |   Display            { $$=$1; }
     ;
 
 Variable:
@@ -149,6 +157,10 @@ BlockBegin:
 BlockEnd:
         END_T { stable->decrement_depth(); }
     ;
+
+Display:
+        DSP_VT       { $$=new Pry::node::DisplayVariableTable(vtable); }
+    |   DSP_V STRING { $$=new Pry::node::DisplayVariable($2, vtable); }
 
 %%
 

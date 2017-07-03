@@ -11,6 +11,8 @@ namespace Pry {
             Assignment();
             Assignment(std::string name, variable::Table* t, Node* child = nullptr);
             virtual Node* exec();
+        protected:
+            virtual std::string type_string() const;
         private:
             variable::Table* table;
             std::string name;

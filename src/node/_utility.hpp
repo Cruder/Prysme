@@ -6,6 +6,8 @@
 #include "bool_comparator.hpp"
 #include "condition.hpp"
 #include "declarement.hpp"
+#include "display_variable_table.hpp"
+#include "display_variable.hpp"
 #include "math.hpp"
 #include "primitive.hpp"
 #include "scope.hpp"

@@ -33,6 +33,11 @@ comment  [#].+
 {empty}     { /* NOTHING */}
 {comment}   { return token::COMMENT; }
 
+"%tree-view" { return token::OPT_TREE_VIEW; }
+
+"display_variable_table" { return token::DSP_VT; }
+"display_variable"       { return token::DSP_V;  }
+
 "="         { return token::EQ_T;  }
 "\n"        { return token::EOL_T; }
 "var"       { return token::VAR_T; }
@@ -58,7 +63,7 @@ comment  [#].+
 "do"        { yylval->build<Pry::tree::List*>(new Pry::tree::List()); return token::DO_T; }
 "end"       { return token::END_T; }
 
-{num} {
+{int} {
     yylval->build<int>(atoi(yytext));
     return token::INT;
 }

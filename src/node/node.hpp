@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 #include "../variable/primitive_type.hpp"
 
 namespace Pry {
@@ -18,8 +19,12 @@ namespace Pry {
             void add_children(Node* child);
             void add_children(std::vector<Node*> child);
             virtual Node* exec();
+
+            virtual std::string as_string(std::size_t space = 0) const;
         protected:
             std::vector<Node*> children;
+        protected:
+            virtual std::string type_string() const;
         };
     }
 }

@@ -13,5 +13,7 @@ namespace Pry {
         Node* Primitive::exec() {
             return this;
         }
+
+        std::string Primitive::type_string() const { return "Primitive"; }
     }
 }

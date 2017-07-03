@@ -20,9 +20,7 @@ namespace Pry {
             std::cerr << "Parse failed" << std::endl;
         }
 
+        if(tree_view) { std::cout << node_list << std::endl; }
         node_list.exec();
-
-        std::cout << *variables->find("foo") << std::endl;
-        std::cout << *variables->find("bag") << std::endl;
     }
 }

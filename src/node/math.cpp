@@ -82,7 +82,7 @@ struct mul_visitor {
     }
 
     Pry::variable::PrimitiveType operator()(auto&& arg1, auto&& arg2) {
-        throw AlgebraException("String", "String");
+        throw AlgebraException("UNK", "UNK");
     }
 };
 struct div_visitor {
@@ -107,7 +107,7 @@ struct div_visitor {
     }
 
     Pry::variable::PrimitiveType operator()(auto&& arg1, auto&& arg2) {
-        throw AlgebraException("String", "String");
+        throw AlgebraException("UNK", "UNK");
     }
 };
 struct pow_visitor {
@@ -132,7 +132,7 @@ struct pow_visitor {
     }
 
     Pry::variable::PrimitiveType operator()(auto&& arg1, auto&& arg2) {
-        throw AlgebraException("String", "String");
+        throw AlgebraException("UNK", "UNK");
     }
 };
 
@@ -162,5 +162,7 @@ namespace Pry {
             if(op == MathOp::POW) { value = std::visit(pow_visitor{}, val1, val2); }
             return this;
         }
+
+        std::string Math::type_string() const { return "Math"; }
     }
 }

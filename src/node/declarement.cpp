@@ -23,5 +23,7 @@ namespace Pry {
 
             return this;
         }
+
+        std::string Declarement::type_string() const { return "Declarement"; }
     }
 }

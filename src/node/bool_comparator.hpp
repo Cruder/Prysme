@@ -12,7 +12,8 @@ namespace Pry {
             BoolComparator();
             BoolComparator(const BoolOp& op, Node* child1 = nullptr, Node* child2 = nullptr);
             virtual Node* exec();
-
+        protected:
+            virtual std::string type_string() const;
         private:
             BoolOp op;
         };

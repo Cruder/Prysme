@@ -15,6 +15,9 @@ namespace Pry {
 
             Variable* find(std::string name);
             void      define(std::string name, std::unique_ptr<Variable> variable);
+
+            std::string as_string() const;
+            friend std::ostream& operator<<(std::ostream& os, const Table& v);
         private:
             std::vector<std::unique_ptr<Row>> variable_stack;
         };

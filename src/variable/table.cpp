@@ -31,5 +31,18 @@ namespace Pry {
         void Table::define(std::string name, std::unique_ptr<Variable> variable) {
             variable_stack.back()->define(name, std::move(variable));
         }
+
+        std::string Table::as_string() const {
+            std::string t = "Table [\n";
+            for(auto& row : variable_stack) { t += '\t' + row->as_string() + '\n'; }
+            t += "]";
+
+            return t;
+        }
+
+        std::ostream& operator<<(std::ostream& os, const Table& v) {
+            os << v.as_string();
+            return os;
+        }
     }
 }
