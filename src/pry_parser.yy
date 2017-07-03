@@ -45,6 +45,7 @@
 %token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
 %token <Pry::tree::List*> DO_T
 %token IF_T ELSE_T END_T DSP_VT DSP_V
+%token OPT_TREE_VIEW
 
 %type <Pry::node::Node*> Expr Display
 %type <Pry::node::Assignment*> Assignment
@@ -82,6 +83,11 @@ Line:
         EOL_T      {}
     |   COMMENT    {}
     |   Expr EOL_T { driver.scope->add_node(std::move($1)); }
+    |   Option EOL_T {}
+    ;
+
+Option:
+        OPT_TREE_VIEW { driver.enable_tree_view(); }
     ;
 
 Expr:

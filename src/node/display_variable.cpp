@@ -17,5 +17,7 @@ namespace Pry {
             std::cout << name << " -> " << *table->find(name) << std::endl;
             return this;
         }
+
+        std::string DisplayVariable::type_string() const { return "DisplayVariable"; }
     }
 }

@@ -12,7 +12,8 @@ namespace Pry {
             DisplayVariable();
             DisplayVariable(const std::string& name, variable::Table* table);
             virtual Node* exec();
-
+        protected:
+            virtual std::string type_string() const;
         private:
             std::string name;
             variable::Table* table;

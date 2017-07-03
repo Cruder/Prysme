@@ -85,5 +85,7 @@ namespace Pry {
 
             return this;
         }
+
+        std::string BoolComparator::type_string() const { return "BoolComparator"; }
     }
 }

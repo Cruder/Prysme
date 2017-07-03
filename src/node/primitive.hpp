@@ -10,6 +10,8 @@ namespace Pry {
             Primitive();
             Primitive(const Pry::variable::PrimitiveType& type);
             virtual Node* exec();
+        protected:
+            virtual std::string type_string() const;
         };
     }
 }

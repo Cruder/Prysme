@@ -18,5 +18,7 @@ namespace Pry {
             node->add_children(this);
             return node;
         }
+
+        std::string Variable::type_string() const { return "Variable"; }
     }
 }

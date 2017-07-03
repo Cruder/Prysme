@@ -23,5 +23,7 @@ namespace Pry {
             value = child->value;
             return this;
         }
+
+        std::string Assignment::type_string() const { return "Assignment"; }
     }
 }

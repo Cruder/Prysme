@@ -23,5 +23,17 @@ namespace Pry {
             }
             return ret->value;
         }
+
+        std::string List::as_string(std::size_t space) const {
+            std::string str_space(space, ' ');
+            std::string str = str_space + "List [\n";
+            for(auto& node : nodes) { str += node->as_string(space + 2) + '\n'; }
+            return str + str_space + ']';
+        }
+
+        std::ostream& operator<<(std::ostream& os, const List& list) {
+            os << list.as_string();
+            return os;
+        }
     }
 }

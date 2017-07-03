@@ -162,5 +162,7 @@ namespace Pry {
             if(op == MathOp::POW) { value = std::visit(pow_visitor{}, val1, val2); }
             return this;
         }
+
+        std::string Math::type_string() const { return "Math"; }
     }
 }

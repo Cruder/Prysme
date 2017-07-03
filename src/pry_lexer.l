@@ -33,6 +33,8 @@ comment  [#].+
 {empty}     { /* NOTHING */}
 {comment}   { return token::COMMENT; }
 
+"%tree-view" { return token::OPT_TREE_VIEW; }
+
 "display_variable_table" { return token::DSP_VT; }
 "display_variable"       { return token::DSP_V;  }
 

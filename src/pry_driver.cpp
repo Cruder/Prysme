@@ -20,6 +20,7 @@ namespace Pry {
             std::cerr << "Parse failed" << std::endl;
         }
 
+        if(tree_view) { std::cout << node_list << std::endl; }
         node_list.exec();
     }
 }

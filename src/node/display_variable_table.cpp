@@ -16,5 +16,7 @@ namespace Pry {
             std::cout << *table << std::endl;
             return this;
         }
+
+        std::string DisplayVariableTable::type_string() const { return "DisplayVariableTable"; }
     }
 }

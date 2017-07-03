@@ -12,7 +12,8 @@ namespace Pry {
             Math();
             Math(const MathOp& op, Node* child1 = nullptr, Node* child2 = nullptr);
             virtual Node* exec();
-
+        protected:
+            virtual std::string type_string() const;
         private:
             MathOp op;
         };
