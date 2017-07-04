@@ -10,14 +10,13 @@ namespace Pry {
         class Variable {
         public:
             PrimitiveType value;
+            bool is_constant;
         public:
             Variable(const PrimitiveType& value, bool is_constant = false);
             void update(const std::string& _value);
 
             std::string as_string() const;
             friend std::ostream& operator<<(std::ostream& os, const Variable& v);
-        private:
-            bool is_constant;
         };
     }
 }

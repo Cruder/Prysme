@@ -1,4 +1,5 @@
 #include "assignment.hpp"
+#include "../variable/constant_exception.hpp"
 
 namespace Pry {
     namespace node {
@@ -17,6 +18,9 @@ namespace Pry {
 
         Node* Assignment::exec() {
             auto var = table->find(name);
+            if(var->is_constant) {
+                throw variable::ConstantException(name);
+            }
             auto child = children[0]->exec();
 
             var->value = child->value;

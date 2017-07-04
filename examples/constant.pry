@@ -1,0 +1,9 @@
+var foo = 5
+display_variable "foo"
+foo = 10
+display_variable "foo"
+
+val bar = 5
+display_variable "bar"
+bar = 10
+display_variable "bar"
