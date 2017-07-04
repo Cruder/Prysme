@@ -39,11 +39,13 @@ add_executable(prysme
     src/node/declarement
     src/node/display_variable_table
     src/node/display_variable
+    src/node/for
     src/node/math
     src/node/node
     src/node/primitive
     src/node/scope
     src/node/variable
+    src/node/while
 
     ${FLEX_scanner_OUTPUTS}
     ${BISON_parser_OUTPUTS}

@@ -1,0 +1,14 @@
+var value = 5;
+
+while value < 10 do
+  display_variable "value"
+  value = value + 1
+end
+
+display_variable_table
+
+for var i = 0 | i < 10 | i = i + 1 do
+  display_variable "i"
+end
+
+display_variable_table

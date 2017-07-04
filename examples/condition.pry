@@ -1,5 +1,8 @@
 var foo = 51.1
 var bag = 10
+
+display_variable "foo"
+
 if foo == 51.1 do
   # important if
   foo = 10

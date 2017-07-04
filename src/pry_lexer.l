@@ -62,6 +62,9 @@ comment  [#].+
 "else"      { return token::ELSE_T; }
 "do"        { yylval->build<Pry::tree::List*>(new Pry::tree::List()); return token::DO_T; }
 "end"       { return token::END_T; }
+"while"     { return token::WHILE_T; }
+"|"         { return token::PIPE_T; }
+"for"       { return token::FOR_T; }
 
 {int} {
     yylval->build<int>(atoi(yytext));

@@ -26,6 +26,7 @@
 
 %code{
     #include "src/pry_driver.hpp"
+    #include <sstream>
 
     #undef yylex
     #define yylex scanner.yylex
@@ -44,7 +45,7 @@
 %token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 %token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
 %token <Pry::tree::List*> DO_T
-%token IF_T ELSE_T END_T DSP_VT DSP_V
+%token PIPE_T FOR_T WHILE_T IF_T ELSE_T END_T DSP_VT DSP_V
 %token OPT_TREE_VIEW
 
 %type <Pry::node::Node*> Expr Display
@@ -56,6 +57,8 @@
 %type <Pry::node::Condition*> Condition
 %type <Pry::node::BoolComparator*> BoolExpr
 %type <Pry::node::Scope*> Block
+%type <Pry::node::While*> While
+%type <Pry::node::For*> For
 
 %type <Pry::tree::List*> BlockBegin
 
@@ -99,6 +102,16 @@ Expr:
     |   Assignment         { $$=$1; }
     |   Condition          { $$=$1; }
     |   Display            { $$=$1; }
+    |   While              { $$=$1; }
+    |   For              { $$=$1; }
+    ;
+
+While:
+        WHILE_T BoolExpr Block { $$=new Pry::node::While($2, $3); }
+    ;
+
+For:
+        FOR_T Expr PIPE_T BoolExpr PIPE_T Expr Block { $$=new Pry::node::For($4, $7, $2, $6); }
     ;
 
 Variable:
