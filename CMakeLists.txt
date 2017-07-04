@@ -30,6 +30,12 @@ add_executable(prysme
     src/variable/constant_exception
     src/variable/primitive_type
 
+    src/function/row
+    src/function/table
+    src/function/function
+    src/function/already_defined_exception
+    src/function/not_found_exception
+
     src/tree/list
     src/tree/scope
 
@@ -41,6 +47,8 @@ add_executable(prysme
     src/node/display_variable_table
     src/node/display_variable
     src/node/for
+    src/node/function_call
+    src/node/function_declare
     src/node/math
     src/node/node
     src/node/primitive

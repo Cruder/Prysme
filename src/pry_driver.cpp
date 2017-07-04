@@ -5,6 +5,7 @@
 namespace Pry {
     Driver::Driver() :
         variables(std::make_unique<variable::Table>()),
+        functions(std::make_unique<function::Table>()),
         scope(std::make_unique<tree::Scope>(&node_list)) {
     }
 

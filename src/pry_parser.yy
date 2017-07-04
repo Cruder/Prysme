@@ -31,6 +31,7 @@
     #undef yylex
     #define yylex scanner.yylex
     #define vtable driver.variables.get()
+    #define ftable driver.functions.get()
     #define stable driver.scope.get()
 }
 
@@ -45,7 +46,7 @@
 %token <Pry::node::MathOp> PLUS_T MINUS_T TIMES_T DIVIDE_T POW_T
 %token <Pry::node::BoolOp> COND_EQ_T COND_NEQ_T COND_INF_T COND_INFEQ_T COND_SUP_T COND_SUPEQ_T
 %token <Pry::tree::List*> DO_T
-%token PIPE_T FOR_T WHILE_T IF_T ELSE_T END_T DSP_VT DSP_V
+%token DEF_T PIPE_T FOR_T WHILE_T IF_T ELSE_T END_T DSP_VT DSP_V
 %token OPT_TREE_VIEW
 
 %type <Pry::node::Node*> Expr Display
@@ -59,6 +60,8 @@
 %type <Pry::node::Scope*> Block
 %type <Pry::node::While*> While
 %type <Pry::node::For*> For
+%type <Pry::node::FunctionDeclare*> FunctionDeclare
+%type <Pry::node::FunctionCall*> FunctionCall
 
 %type <Pry::tree::List*> BlockBegin
 
@@ -103,7 +106,9 @@ Expr:
     |   Condition          { $$=$1; }
     |   Display            { $$=$1; }
     |   While              { $$=$1; }
-    |   For              { $$=$1; }
+    |   For                { $$=$1; }
+    |   FunctionDeclare    { $$=$1; }
+    |   FunctionCall       { $$=$1; }
     ;
 
 While:
@@ -149,6 +154,14 @@ Declarement:
     |   VAL_T VAR EQ_T Expr {
           $$=new Pry::node::Declarement($2, vtable, true, $4);
     }
+
+FunctionDeclare:
+        DEF_T VAR Block { $$=new Pry::node::FunctionDeclare($2, ftable, $3); }
+    ;
+
+FunctionCall:
+        VAR LPAR_T RPAR_T { $$=new Pry::node::FunctionCall($1, ftable); }
+    ;
 
 Assignment:
         VAR EQ_T Expr       { $$=new Pry::node::Assignment($1, vtable, $3); }

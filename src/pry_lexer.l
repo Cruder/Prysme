@@ -65,6 +65,7 @@ comment  [#].+
 "while"     { return token::WHILE_T; }
 "|"         { return token::PIPE_T; }
 "for"       { return token::FOR_T; }
+"def"       { return token::DEF_T; }
 
 {int} {
     yylval->build<int>(atoi(yytext));
