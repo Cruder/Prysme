@@ -27,6 +27,7 @@ add_executable(prysme
     src/variable/variable
     src/variable/already_defined_exception
     src/variable/not_found_exception
+    src/variable/constant_exception
     src/variable/primitive_type
 
     src/tree/list
