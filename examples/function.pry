@@ -1,0 +1,10 @@
+def hello do
+  var i = "Hello world"
+
+  display_variable "i"
+  255
+end
+
+var foo = hello()
+
+display_variable "foo"

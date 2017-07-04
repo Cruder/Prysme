@@ -9,6 +9,8 @@
 #include "display_variable_table.hpp"
 #include "display_variable.hpp"
 #include "for.hpp"
+#include "function_call.hpp"
+#include "function_declare.hpp"
 #include "math.hpp"
 #include "primitive.hpp"
 #include "scope.hpp"

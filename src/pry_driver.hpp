@@ -3,15 +3,18 @@
 
 #include <memory>
 #include <string>
+#include "variable/table.hpp"
+#include "function/table.hpp"
+#include "tree/scope.hpp"
+
 #include "pry_scanner.hpp"
 #include "pry_parser.tab.hpp"
-#include "variable/table.hpp"
-#include "tree/scope.hpp"
 
 namespace Pry {
     class Driver {
     public:
         std::unique_ptr<variable::Table> variables;
+        std::unique_ptr<function::Table> functions;
         std::unique_ptr<tree::Scope> scope;
     public:
         Driver();
