@@ -8,9 +8,11 @@
 #include "declarement.hpp"
 #include "display_variable_table.hpp"
 #include "display_variable.hpp"
+#include "for.hpp"
 #include "math.hpp"
 #include "primitive.hpp"
 #include "scope.hpp"
 #include "variable.hpp"
+#include "while.hpp"
 
 #endif /* end of include guard: ___NODE_UTILITY_HPP__ */
